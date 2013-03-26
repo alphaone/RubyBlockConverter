@@ -109,6 +109,8 @@ class BraceToDoEndCommand(sublime_plugin.TextCommand):
           newline = ''
         replace_start = p - (len(m.group('spaces')) if m.group('exp') and m.group('spaces') else 0)
         view.replace(edit, sublime.Region(replace_start, p + 1), '%send' % newline)
+        view.sel().clear()
+        view.sel().add(sublime.Region(replace_start))
 
     self.reindent()
 
